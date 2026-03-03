@@ -1,35 +1,9 @@
-# AGENTS.md - ASCII Forge
+## Important
 
-Guidelines for agentic coding agents working in this repository.
+- Run `bun run typecheck` and `bun run lint` after making changes and fix any errors.
+- Don't run `bun run build`, `bun run start` or `bun run preview` until you're ready to commit.
+- Don't run `bun run dev`, always assume the dev server is already running.
 
-## Build & Development Commands
-
-```bash
-# Development server
-bun run dev
-
-# Type checking (use this instead of build for quick checks)
-bun run typecheck
-
-# Production build
-bun run build
-
-# Linting
-bun run lint
-
-# Preview production build
-bun run preview
-
-# Install shadcn components
-bunx --bun shadcn@latest add <component-name>
-```
-
-## Tech Stack
-
-- **Framework**: React 19 + TypeScript + Vite
-- **Styling**: Tailwind CSS v4 + shadcn/ui
-- **Package Manager**: Bun (do not use npm/yarn/pnpm)
-- **Icons**: Lucide React
 
 ## Code Style Guidelines
 
@@ -56,59 +30,10 @@ bunx --bun shadcn@latest add <component-name>
 
 Also, use React Best Practices skill when possible.
 
-### Imports
-```typescript
-// Order: React, external libs, internal types, internal components, internal hooks, internal utils
-import { useState, memo } from "react";
-import { cn } from "@/lib/utils";
-import type { ToolType } from "@/types";
-import { TOOLS } from "@/types";
-import { Button } from "@/components/ui/button";
-import { useCanvas } from "@/hooks/use-canvas";
-import { drawBox } from "@/lib/canvas-utils";
-```
-
-### Styling
-- Use Tailwind CSS classes
-- Dark mode by default (zinc color palette)
-- Common patterns:
-  - `bg-zinc-950` - background
-  - `text-white` / `text-zinc-400` - text
-  - `border-zinc-800` - borders
-  - `rounded-lg` - border radius
-
 ### Error Handling
 - Prefer early returns over nested conditionals
 - Validate array bounds before accessing
 - Use functional state updates for race condition safety
-
-## Project Structure
-
-```
-src/
-├── components/
-│   ├── ui/              # shadcn components (import from here)
-│   ├── toolbar.tsx
-│   ├── ascii-grid.tsx
-│   └── ...
-├── hooks/
-│   ├── use-canvas.ts
-│   └── use-history.ts
-├── lib/
-│   ├── utils.ts         # shadcn utils (cn function)
-│   └── canvas-utils.ts
-├── types/
-│   └── index.ts         # All TypeScript types
-├── App.tsx
-└── main.tsx
-```
-
-## Path Aliases
-
-- `@/components/*` → `src/components/*`
-- `@/hooks/*` → `src/hooks/*`
-- `@/lib/*` → `src/lib/*`
-- `@/types` → `src/types/index.ts`
 
 ## Key Conventions
 
@@ -140,17 +65,3 @@ src/
 - Add unnecessary dependencies
 - Use CSS-in-JS (use Tailwind)
 - Modify shadcn component internals
-
-## Before Committing
-
-1. Run `bun run typecheck` - must pass with zero errors
-2. Run `bun run lint` - must pass
-3. Test the app works: `bun run dev`
-
-## User Preferences
-
-- Dark mode by default
-- Top toolbar (like Excalidraw)
-- Keyboard shortcuts for tools (B=Box, L=Line, etc.)
-- Live preview while drawing
-- Fully offline app (minimal dependencies)
